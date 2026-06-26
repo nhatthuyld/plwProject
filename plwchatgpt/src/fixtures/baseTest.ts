@@ -1,10 +1,10 @@
-import { test as base } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { ProductPage } from '../pages/ProductPage';
-import { CartPage } from '../pages/CartPage';
-import { CheckoutPage } from '../pages/CheckoutPage';
+import { test as base } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage";
+import { ProductPage } from "../pages/ProductPage";
+import { CartPage } from "../pages/CartPage";
+import { CheckoutPage } from "../pages/CheckoutPage";
 
-// Declare the types of fixtures that will be available to all tests
+// declare the types of fixtures that will be available to all tests
 type MyFixtures = {
   loginPage: LoginPage;
   productPage: ProductPage;
@@ -35,5 +35,5 @@ export const test = base.extend<MyFixtures>({
 });
 
 // Re-export expect from Playwright for ease of use in tests
-export { expect } from '@playwright/test';
-export type { Page } from '@playwright/test';
+export { expect } from "@playwright/test";
+export type { Page } from "@playwright/test";
