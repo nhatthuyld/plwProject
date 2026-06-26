@@ -1,0 +1,28 @@
+{
+  "name": "playwright-ecommerce",
+  "version": "1.0.0",
+  "description": "E-commerce automated testing repository using Playwright, TypeScript, and Page Object Model (POM)",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:ui": "npx playwright test --ui",
+    "test:report": "npx playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "e-commerce",
+    "pom",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.2",
+    "dotenv": "^17.4.2",
+    "typescript": "^5.4.5"
+  }
+}

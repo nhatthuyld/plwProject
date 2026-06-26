@@ -1,0 +1,9 @@
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+playwright/.local-browsers/
+dist/
+.env
+.DS_Store
+playwright/.auth/
