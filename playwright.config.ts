@@ -1,12 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-import path from 'path';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+// Nạp các biến môi trường từ file .env ở thư mục gốc của dự án ngay khi bắt đầu chạy
+dotenv.config();
+
+import { ENV } from './src/config/env';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -26,7 +24,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://www.saucedemo.com',
+    baseURL: ENV.BASE_URL,
     headless: false,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
@@ -38,8 +36,8 @@ export default defineConfig({
     /* Record video on failure */
     video: 'retain-on-failure',
 
-    // save login
-    storageState: "playwright/.auth/standard.json"
+    //storage stage save login
+    storageState: "playwright/.auth/admin.json"
   },
 
   /* Configure projects for major browsers */
@@ -47,6 +45,7 @@ export default defineConfig({
     // Setup project to authenticate all roles
     {
       name: 'setup',
+      testDir: './auth',
       testMatch: /auth\.setup\.ts/,
       use: {
         storageState: { cookies: [], origins: [] },

@@ -7,3 +7,5 @@ dist/
 .env
 .DS_Store
 playwright/.auth/
+# remove file users
+src/data/users.ts

@@ -1,38 +1,54 @@
-import { APIRequestContext, APIResponse } from '@playwright/test';
+import { APIResponse } from '@playwright/test';
+import { BaseApi } from './BaseApi';
+import { API_ENDPOINTS } from '../constants/ApiEndpoint';
+import { HEADERS } from '../constants/Header';
 
-export class LoginApi {
-  constructor(private request: APIRequestContext) {}
-
+/**
+ * Lớp LoginApi xử lý các tác vụ API liên quan đến xác thực tài khoản.
+ * Kế thừa từ BaseApi để sử dụng các hàm HTTP có sẵn.
+ */
+export class LoginApi extends BaseApi {
   /**
-   * Performs an API login request.
-   * Note: Since SauceDemo is a front-end only site, this method serves as
-   * an example pattern of how to do API login and session management in Playwright.
+   * Đăng nhập tài khoản bằng API.
    * 
-   * @param username Account username
-   * @param password Account password
+   * @param username Tên đăng nhập.
+   * @param password Mật khẩu.
+   * @returns APIResponse.
    */
   async login(username: string, password: string): Promise<APIResponse> {
-    // In a real application, you would make an API request like:
-    return this.request.post('/api/v1/login', {
-      data: {
-        username,
-        password,
-      },
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
+    return this.post(API_ENDPOINTS.LOGIN, {
+      username,
+      password,
     });
   }
 
   /**
-   * Fetches user profile data after logging in (Example pattern)
+   * Đăng xuất tài khoản bằng API.
+   * Yêu cầu gửi kèm Token xác thực trong Header.
+   * 
+   * @param token Chuỗi Access Token hiện tại của tài khoản.
+   * @returns APIResponse.
    */
-  async getUserProfile(token: string): Promise<APIResponse> {
-    return this.request.get('/api/v1/user/profile', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+  async logout(token: string): Promise<APIResponse> {
+    return this.post(
+      API_ENDPOINTS.LOGOUT,
+      null, // Không cần gửi kèm body data
+      HEADERS.getAuthHeader(token) // Đính kèm token vào header Authorization
+    );
+  }
+
+  /**
+   * Làm mới (Refresh) Session/Token để kéo dài thời gian đăng nhập của tài khoản.
+   * Yêu cầu gửi kèm Token xác thực trong Header.
+   * 
+   * @param token Chuỗi Refresh/Access Token hiện tại.
+   * @returns APIResponse.
+   */
+  async refreshToken(token: string): Promise<APIResponse> {
+    return this.post(
+      API_ENDPOINTS.REFRESH_TOKEN,
+      null, // Không cần gửi kèm body data
+      HEADERS.getAuthHeader(token) // Đính kèm token vào header Authorization
+    );
   }
 }
