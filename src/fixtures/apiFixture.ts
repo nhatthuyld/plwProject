@@ -3,6 +3,8 @@ import { LoginApi } from '../api/LoginApi';
 import { ProductApi } from '../api/ProductApi';
 import { CartApi } from '../api/CartApi';
 import { JsonPlaceholderApi } from '../api/JsonPlaceholderApi';
+import { CommentApi } from '../api/CommentApi';
+
 
 // Khai báo kiểu dữ liệu cho các API Fixtures
 type ApiFixtures = {
@@ -10,6 +12,8 @@ type ApiFixtures = {
   productApi: ProductApi;
   cartApi: CartApi;
   jsonPlaceholderApi: JsonPlaceholderApi;
+  commentApi: CommentApi;
+
 };
 
 /**
@@ -36,6 +40,11 @@ export const test = base.extend<ApiFixtures>({
   jsonPlaceholderApi: async ({ request }, use) => {
     await use(new JsonPlaceholderApi(request));
   },
+  // Khởi tạo CommentApi
+  commentApi: async ({ request }, use) => {
+    await use(new CommentApi(request));
+  },
+
 });
 
 // Xuất lại expect và test để sử dụng trực tiếp trong các file kiểm thử
