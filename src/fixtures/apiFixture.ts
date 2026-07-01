@@ -2,12 +2,14 @@ import { test as base } from './baseTest';
 import { LoginApi } from '../api/LoginApi';
 import { ProductApi } from '../api/ProductApi';
 import { CartApi } from '../api/CartApi';
+import { JsonPlaceholderApi } from '../api/JsonPlaceholderApi';
 
 // Khai báo kiểu dữ liệu cho các API Fixtures
 type ApiFixtures = {
   loginApi: LoginApi;
   productApi: ProductApi;
   cartApi: CartApi;
+  jsonPlaceholderApi: JsonPlaceholderApi;
 };
 
 /**
@@ -28,6 +30,11 @@ export const test = base.extend<ApiFixtures>({
   // Khởi tạo CartApi
   cartApi: async ({ request }, use) => {
     await use(new CartApi(request));
+  },
+
+  // Khởi tạo JsonPlaceholderApi
+  jsonPlaceholderApi: async ({ request }, use) => {
+    await use(new JsonPlaceholderApi(request));
   },
 });
 
