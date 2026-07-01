@@ -17,4 +17,8 @@ export const API_ENDPOINTS = {
   
   // Người dùng (Profile)
   PROFILE: '/api/v1/user/profile',
+
+  // Mock API (Dùng cho kiểm thử kiến trúc BaseApi)
+  MOCK_GET: 'https://httpbin.org/get',
+  MOCK_POST: 'https://httpbin.org/post',
 } as const;

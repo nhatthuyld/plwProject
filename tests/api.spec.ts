@@ -1,5 +1,6 @@
 import { test, expect } from '../src/fixtures/apiFixture';
 import { BaseApi } from '../src/api/BaseApi';
+import { API_ENDPOINTS } from '../src/constants/ApiEndpoint';
 
 /**
  * Lớp TestApi kế thừa từ BaseApi để phục vụ việc kiểm thử tích hợp (Unit/Integration Test)
@@ -7,11 +8,11 @@ import { BaseApi } from '../src/api/BaseApi';
  */
 class TestApi extends BaseApi {
   async testGet() {
-    return this.get('https://httpbin.org/get');
+    return this.get(API_ENDPOINTS.MOCK_GET);
   }
 
   async testPost(data: any) {
-    return this.post('https://httpbin.org/post', data);
+    return this.post(API_ENDPOINTS.MOCK_POST, data);
   }
 }
 
@@ -22,7 +23,7 @@ test.describe('Kiểm thử Xác minh Kiến trúc BaseApi', () => {
     // 1. Xác minh phương thức GET hoạt động chính xác
     const getResponse = await testApi.testGet();
     expect(getResponse.ok()).toBe(true);
-    
+
     const getJson = await getResponse.json();
     expect(getJson.url).toContain('/get');
     // Xác nhận default headers (Accept và Content-Type) đã tự động được đính kèm bởi BaseApi
