@@ -36,4 +36,21 @@ export class JsonPlaceholderApi extends BaseApi {
   async createPost(postData: CreatePostPayload): Promise<APIResponse> {
     return this.post(this.baseUrl, postData);
   }
+
+  /**
+   * Cập nhật toàn bộ bài viết (PUT)
+   * @param id Mã bài viết cần cập nhật
+   * @param postData Dữ liệu mới
+   */
+  async updatePost(id: number, postData: CreatePostPayload): Promise<APIResponse> {
+    return this.put(`${this.baseUrl}/${id}`, postData);
+  }
+
+  /**
+   * Xóa bài viết (DELETE)
+   * @param id Mã bài viết cần xóa
+   */
+  async deletePost(id: number): Promise<APIResponse> {
+    return this.delete(`${this.baseUrl}/${id}`);
+  }
 }
