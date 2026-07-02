@@ -4,6 +4,7 @@ import { ProductApi } from '../api/ProductApi';
 import { CartApi } from '../api/CartApi';
 import { JsonPlaceholderApi } from '../api/JsonPlaceholderApi';
 import { CommentApi } from '../api/CommentApi';
+import { AdvancedApi } from '../api/AdvancedApi';
 
 
 // Khai báo kiểu dữ liệu cho các API Fixtures
@@ -13,7 +14,7 @@ type ApiFixtures = {
   cartApi: CartApi;
   jsonPlaceholderApi: JsonPlaceholderApi;
   commentApi: CommentApi;
-
+  advancedApi: AdvancedApi;
 };
 
 /**
@@ -44,7 +45,10 @@ export const test = base.extend<ApiFixtures>({
   commentApi: async ({ request }, use) => {
     await use(new CommentApi(request));
   },
-
+  // Khởi tạo AdvancedApi
+  advancedApi: async ({ request }, use) => {
+    await use(new AdvancedApi(request));
+  },
 });
 
 // Xuất lại expect và test để sử dụng trực tiếp trong các file kiểm thử

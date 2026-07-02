@@ -19,17 +19,23 @@ export class BaseApi {
    * 
    * @param method Phương thức HTTP (GET, POST, PUT, DELETE).
    * @param url Đường dẫn gọi API (endpoint).
-   * @param options Các tham số tùy chọn bổ sung như body data và headers riêng.
+   * @param options Các tham số tùy chọn bổ sung như body data, headers, params và multipart.
    * @returns Trả về đối tượng APIResponse gốc từ Playwright.
    */
-  private async execute(
+  protected async execute(
     method: 'GET' | 'POST' | 'PUT' | 'DELETE',
     url: string,
-    options: { data?: any; headers?: Record<string, string> } = {}
+    options: { 
+      data?: any; 
+      headers?: Record<string, string>; 
+      params?: Record<string, any>;
+      multipart?: Record<string, any>;
+    } = {}
   ): Promise<APIResponse> {
-    // Trộn lẫn các header mặc định (JSON Content-Type, Accept) với headers tùy biến truyền vào
+    // Trộn lẫn các header mặc định với headers tùy biến truyền vào. 
+    // Nếu upload file multipart, không gửi kèm Content-Type application/json để Playwright tự động tính boundary.
     const mergedHeaders = {
-      ...HEADERS.JSON_HEADERS,
+      ...(options.multipart ? { 'Accept': 'application/json' } : HEADERS.JSON_HEADERS),
       ...options.headers,
     };
 
@@ -38,6 +44,8 @@ export class BaseApi {
       method,
       data: options.data,
       headers: mergedHeaders,
+      params: options.params,
+      multipart: options.multipart,
     });
 
     // SOLID & Fail-Fast: Kiểm tra nếu phản hồi trả về có mã trạng thái không thành công (không nằm trong dải 2xx)
@@ -53,8 +61,8 @@ export class BaseApi {
   /**
    * Thực hiện cuộc gọi GET để truy xuất thông tin từ máy chủ.
    */
-  protected async get(url: string, headers?: Record<string, string>): Promise<APIResponse> {
-    return this.execute('GET', url, { headers });
+  protected async get(url: string, headers?: Record<string, string>, params?: Record<string, any>): Promise<APIResponse> {
+    return this.execute('GET', url, { headers, params });
   }
 
   /**

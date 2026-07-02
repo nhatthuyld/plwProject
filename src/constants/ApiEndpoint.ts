@@ -19,11 +19,14 @@ export const API_ENDPOINTS = {
   PROFILE: '/api/v1/user/profile',
 
   // Mock API (Dùng cho kiểm thử kiến trúc BaseApi)
-  MOCK_GET: 'https://httpbin.org/get',
-  MOCK_POST: 'https://httpbin.org/post',
+  MOCK_GET: 'https://httpbingo.org/get',
+  MOCK_POST: 'https://httpbingo.org/post',
+  MOCK_BEARER: 'https://httpbingo.org/bearer',
 
   // Bình luận (Comments - JSONPlaceholder)
   COMMENTS: 'https://jsonplaceholder.typicode.com/comments',
   COMMENT_BY_ID: (id: string | number) => `https://jsonplaceholder.typicode.com/comments/${id}`,
 
+  // Bài viết (Posts - JSONPlaceholder)
+  POSTS: 'https://jsonplaceholder.typicode.com/posts',
 } as const;
