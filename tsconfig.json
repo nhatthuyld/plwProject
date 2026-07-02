@@ -3,6 +3,7 @@
     "target": "es2022",
     "module": "commonjs",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./",
@@ -22,6 +23,15 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "auth/**/*.ts", "playwright.config.ts"],
-  "exclude": ["node_modules", "dist", "plwchatgpt"]
+  "include": [
+    "src/**/*.ts",
+    "tests/**/*.ts",
+    "auth/**/*.ts",
+    "playwright.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "plwchatgpt"
+  ]
 }

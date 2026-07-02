@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Bài viết số 1 từ JSON",
+        "body": "Nội dung bài viết số 1",
+        "userId": 1
+    },
+    {
+        "title": "Bài viết số 2 từ JSON",
+        "body": "Nội dung bài viết số 2",
+        "userId": 2
+    },
+    {
+        "title": "Bài viết số 3 từ JSON",
+        "body": "Nội dung bài viết số 3",
+        "userId": 3
+    }
+]

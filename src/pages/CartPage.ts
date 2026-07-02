@@ -6,12 +6,14 @@ export class CartPage extends BasePage {
   private readonly cartItems: Locator;
   private readonly checkoutButton: Locator;
   private readonly continueShoppingButton: Locator;
+  private readonly cartBadge: Locator;
 
   constructor(page: Page) {
     super(page);
     this.cartItems = page.locator('.cart_item');
     this.checkoutButton = page.locator('[data-test="checkout"]');
     this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
+    this.cartBadge = page.locator('.shopping_cart_badge');
   }
 
   /**
@@ -65,6 +67,13 @@ export class CartPage extends BasePage {
    */
   async clickContinueShopping(): Promise<void> {
     await this.continueShoppingButton.click();
+  }
+
+  /**
+   * Gets the number of items displayed on the shopping cart badge
+   */
+  async getCartBadgeCount(): Promise<string> {
+    return this.cartBadge.innerText();
   }
 }
 
