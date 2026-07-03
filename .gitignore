@@ -11,3 +11,4 @@ playwright/.auth/
 src/data/users.ts
 allure-results/
 allure-report/
+test-accounts.env

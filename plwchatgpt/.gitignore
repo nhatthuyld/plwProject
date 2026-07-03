@@ -8,3 +8,4 @@ dist/
 .DS_Store
 playwright/.auth/
 src/data/users.ts
+test-accounts.env
