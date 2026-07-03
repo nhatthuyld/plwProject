@@ -26,7 +26,7 @@ export class ProductPage extends BasePage {
   }
 
   /**
-   * Verifies if the page header is visible and displays "Products"
+   * Verifie if the page header is visible and displays "Products"
    */
   async isPageLoaded(): Promise<boolean> {
     return (await this.pageHeader.innerText()) === 'Products';
