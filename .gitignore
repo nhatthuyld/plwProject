@@ -9,3 +9,5 @@ dist/
 playwright/.auth/
 # remove file users
 src/data/users.ts
+allure-results/
+allure-report/
