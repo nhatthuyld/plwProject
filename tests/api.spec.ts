@@ -27,7 +27,9 @@ test.describe('Kiểm thử Xác minh Kiến trúc BaseApi', () => {
     const getJson = await getResponse.json();
     expect(getJson.url).toContain('/get');
     // Xác nhận default headers (Accept và Content-Type) đã tự động được đính kèm bởi BaseApi
-    expect(getJson.headers['Accept']).toBe('application/json');
+    const acceptHeader = getJson.headers['Accept'];
+    const receivedAccept = Array.isArray(acceptHeader) ? acceptHeader[0] : acceptHeader;
+    expect(receivedAccept).toBe('application/json');
 
     // 2. Xác minh phương thức POST và truyền body data hoạt động chính xác
     const postData = { testKey: 'Playwright API Automation' };

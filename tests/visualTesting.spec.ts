@@ -12,8 +12,10 @@ test.describe('Lesson 19: Visual Testing (Chụp ảnh & Đối chiếu giao di�
     // Lần chạy thứ hai trở đi sẽ so sánh trực tiếp và PASS nếu khớp 100%
     await expect(page).toHaveScreenshot('login-baseline.png');
   });
-
   test('should fail and show visual diff when button style changes', async ({ page }) => {
+    // Thông báo cho Playwright biết kịch bản này được thiết kế để thất bại
+    test.fail();
+
     // 1. Đi tới trang đăng nhập Saucedemo
     await page.goto(URLS.home);
 
