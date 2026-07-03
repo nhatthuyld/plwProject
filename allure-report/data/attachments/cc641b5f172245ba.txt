@@ -1,0 +1,2 @@
+👉 [Test 2] Bắt đầu lúc: 12:45:41 PM
+✅ [Test 2] Kết thúc sau: 2.013 giây

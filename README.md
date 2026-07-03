@@ -83,9 +83,24 @@ Dưới đây là một số câu lệnh có sẵn được cấu hình trong `p
   npm run test:ui
   ```
 
-* **Xem báo cáo kết quả kiểm thử sau khi chạy:**
+* **Xem báo cáo kết quả kiểm thử sau khi chạy (Playwright HTML):**
   ```bash
   npm run test:report
+  ```
+
+* **Biên dịch kết quả test thành báo cáo Allure (Allure Report):**
+  ```bash
+  npm run allure:generate
+  ```
+
+* **Mở xem báo cáo Allure đã biên dịch trên trình duyệt:**
+  ```bash
+  npm run allure:open
+  ```
+
+* **Phím tắt: Vừa biên dịch vừa tự động mở báo cáo Allure xem nhanh:**
+  ```bash
+  npm run allure:serve
   ```
 
 * **Chạy một file test cụ thể (Ví dụ file `login`):**
@@ -113,5 +128,11 @@ test('Test login thành công', async ({ loginPage, productPage }) => {
 
 ### 3. Data-driven Testing
 Dữ liệu test được quản lý tập trung ở `src/data/` giúp dễ dàng thay đổi mà không phải sửa lại code kịch bản test.
+
+### 4. Tích hợp tự động hóa CI/CD (GitHub Actions)
+Dự án đã được tích hợp quy trình chạy kiểm thử tự động CI/CD:
+* **File cấu hình:** [.github/workflows/playwright.yml](file:///Users/nhatthuy/plwchatgpt/.github/workflows/playwright.yml)
+* **Hệ điều hành máy ảo:** macOS (`runs-on: macos-latest`) hỗ trợ hoàn hảo cho việc so sánh hình ảnh (Visual Testing).
+* **Quản lý biến môi trường bảo mật:** Nạp động thông tin tài khoản thông qua **Repository Variables** của GitHub Actions để bảo vệ mã nguồn. Cú pháp tham chiếu trong YAML: `${{ vars.TEN_BIEN }}`.
 
 Chúc bạn học tập tốt và làm chủ Playwright Automation Testing!
